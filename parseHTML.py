@@ -16,24 +16,27 @@ def getSchedule():
             #If the list of classes hasn't been initialized, initialize it
             except:
                 schedule[quarter] = [class1[5:]]
+    print schedule
     return schedule;
 
 
 def getClasses():
     def getIndex(index):
         return visible_text.index(reqList[index][0]+" "+reqList[index][1])
-    soup = BeautifulSoup(open('degree.htm'), 'html.parser')
+    soup = BeautifulSoup(open('UCSD Degree Audit Report.html'), 'html.parser')
 
     categories = soup.find_all("font")
     requirements = dict()
     reqList = list()
     #Looking for things like 1) CSE REQ or maybe > 2) Statistics - Reqd
+    # FIX THIS
     valid = re.compile(r".*([1-9]+\))\s([^-]+).*$")
     for req in categories:
         if req.string is not None:
             regexResult = valid.match(req.string)
             if regexResult is not None:
                 reqList.append(regexResult.groups())
+    #print reqList
 
     [s.extract() for s in soup(['style', 'script', '[document]', 'head', 'title'])]
     visible_text = soup.getText()

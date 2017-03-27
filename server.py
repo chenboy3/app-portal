@@ -1,11 +1,12 @@
 from flask import Flask
+from flask import render_template
 from parseHTML import *
 import json
 app = Flask(__name__, static_url_path="")
 
 @app.route('/')
 def root():
-    return json.dumps(getSchedule())
+    return render_template('main.html', schedule=getSchedule())
 
 @app.route('/classes')
 def classes():

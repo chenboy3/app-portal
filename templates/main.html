@@ -1,0 +1,16 @@
+<!doctype html>
+<title>Four Year Plan</title>
+<body>
+    {% for key, value in schedule.items() %}
+    <h1>
+      <label>{{key}} </label>
+    </h1>
+    <ul>
+      {% for listElem in value %}
+      <li>
+        <label>{{listElem}}</label>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endfor %}
+</body>
