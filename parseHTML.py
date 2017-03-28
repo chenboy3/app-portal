@@ -16,7 +16,6 @@ def getSchedule():
             #If the list of classes hasn't been initialized, initialize it
             except:
                 schedule[quarter] = [class1[5:]]
-    print schedule
     return schedule;
 
 
@@ -57,3 +56,27 @@ def getClasses():
             requirements[reqList[index-1][1]][1] = int(regexResult.groups()[0])
 
     return requirements
+
+# [Name, PID, College, UC GPA, Total Units Completed, UC Graded Units, Major]
+def getHeaderInfo():
+    soup = BeautifulSoup(open('UCSD Degree Audit Report.html'), 'html.parser')
+    header = (soup.find_all("tbody"))[0]
+    headerList = []
+
+    #abusing BeautifulSoup dom capabilities
+    name = header.find_all(string=re.compile("Name"))
+    headerList.append(unicode(name[0].parent.next_sibling.contents[0]).strip())
+    pid = header.find_all(string=re.compile("PID"))
+    headerList.append(pid[0].parent.next_sibling.contents[0])
+    college = header.find_all(string=re.compile("College"))
+    headerList.append(college[0].parent.next_sibling.contents[0])
+    ucgpa = header.find_all(string=re.compile("UC GPA"))
+    headerList.append(ucgpa[0].parent.next_sibling.contents[0])
+    tunits = header.find_all(string=re.compile("Total Units"))
+    headerList.append(tunits[0].parent.parent.next_sibling.contents[0].contents[0])
+    ucunits = header.find_all(string=re.compile("UC Graded Units"))
+    headerList.append(ucunits[0].parent.next_sibling.contents[0])
+    major = header.find_all(string=re.compile("Major"))
+    headerList.append(major[0].parent.next_sibling.contents[0])
+
+    return headerList
