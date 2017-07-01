@@ -65,7 +65,10 @@ def getHeaderInfo():
 
     #abusing BeautifulSoup dom capabilities
     name = header.find_all(string=re.compile("Name"))
-    headerList.append(unicode(name[0].parent.next_sibling.contents[0]).strip())
+    namestring = unicode(name[0].parent.next_sibling.contents[0]).strip()
+    commaIndex = namestring.find(',')
+    formattedName = namestring[commaIndex + 2:] + ' ' + namestring[:commaIndex]
+    headerList.append(formattedName)
     pid = header.find_all(string=re.compile("PID"))
     headerList.append(pid[0].parent.next_sibling.contents[0])
     college = header.find_all(string=re.compile("College"))

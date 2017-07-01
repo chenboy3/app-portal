@@ -6,7 +6,7 @@ app = Flask(__name__, static_url_path="")
 
 @app.route('/')
 def root():
-    return render_template('main.html', schedule=getSchedule(), header=getHeaderInfo)
+    return render_template('main.html', schedule=getSchedule(), header=getHeaderInfo())
 
 @app.route('/classes')
 def classes():
