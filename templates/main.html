@@ -4,6 +4,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <title>App Portal</title>
+<a href='https://www.glassdoor.com/index.htm'>powered by <img src='https://www.glassdoor.com/static/img/api/glassdoor_logo_80.png' title='Job Search' /></a>
 <head>
   <div>
     Application Portal
@@ -11,8 +12,7 @@
 </head>
 <body>
   Stuff
-  <form>
-    <div class="form-group">
+    <div>
       <label for="companyinput">Company</label>
       <div class="col-8">
         <input type="text" class="form-control" id="companyinput" placeholder="Enter company">
@@ -21,14 +21,14 @@
     <button type="button" class="btn btn-primary" id="search">Search</button>
     <div id="results">
     </div>
-  </form>
 </body>
 <script type=text/javascript>
 $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 $("#search").click(function() {
   console.log($("#companyinput").val());
   $.get($SCRIPT_ROOT + '/company', {'name': $("#companyinput").val()}, function(data) {
-    $("#results").prepend('<img id="theImg" src='+ data + ' />');
+    console.log(data);
+    $("#results").prepend(data);
   });
 });
 </script>
