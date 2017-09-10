@@ -19,7 +19,7 @@ def buildURL(v, format, tp, tk, action, userip, useragent, searchterm):
 
 def getLogo(company):
     response = getCompany(company)
-    print (response.json())
+    # print (response.json())
     #print(json.loads(response.text))
     return (response.json())['response']['employers'][0]['squareLogo']
     #return "http://i.imgur.com/6E2694O.gifv"
