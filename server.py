@@ -15,12 +15,15 @@ def root():
 
 @app.route('/company')
 def company():
-    logo = getLogo(request.args['name'])
-    if logo == None:
+    tup = getLogo(request.args['company'])
+    if tup == None:
         print('not found')
         return render_template('main.html')
     else:
-        return render_template('company.html', logo=logo)
+        #del logo[1]['featuredReview']
+        #print(json.dumps(logo[1], indent=4, sort_keys=True))
+        return render_template('company.html',
+            logo=tup[0], name=tup[1], site=tup[2], rating=tup[3], industry=tup[4])
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

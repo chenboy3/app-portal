@@ -14,16 +14,31 @@
   </div>
 </head>
 <body>
-  <form>
+  <form action="/company">
     <div class="form-group">
-      <label for="companyinput">Company</label>
-      <div class="col-8">
-        <input type="text" class="form-control" id="companyinput" placeholder="Enter company">
-      <div>
+      <div class="row">
+        <div class="col-3">
+        </div>
+        <div class="col-6">
+          <input type="text" class="form-control" id="companyinput" name="company" placeholder="Enter company">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
   </form>
-  <img src={{logo}}>
+  <hr>
+  <br>
+  <h1 class="text-center">
+    <a href="https://{{site}}">{{name}}</a>
+  </h1>
+  <!-- <div class="row text-center"> -->
+    <img src={{logo}} class="mx-auto d-block"/>
+  <!-- </div> -->
+  <p class="text-center">
+    <b>Rating:</b> {{rating}}
+    <br>
+    <b>Industry:</b> {{industry}}
+  </p>
 </body>
 
 <script>

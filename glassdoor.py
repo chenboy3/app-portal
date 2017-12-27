@@ -19,13 +19,15 @@ def buildURL(v, format, tp, tk, action, userip, useragent, searchterm):
 
 def getLogo(company):
     response = getCompany(company).json()
-    print (response)
-    print("PART 2")
-    print(len(response['response']['employers']))
+    #print (response)
+    #print("PART 2")
     # Invalid search
     if len(response['response']['employers']) == 0:
         return None
-    return response['response']['employers'][0]['squareLogo']
+    #print(response['response']['employers'][0])
+    res = response['response']['employers'][0]
+    return (res['squareLogo'], res['name'], res['website'], res['overallRating'], res['industry'])
+    # name, website, overallRating, industry,
     #return "http://i.imgur.com/6E2694O.gifv"
 
 def getName(company):
