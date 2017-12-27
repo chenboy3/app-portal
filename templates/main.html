@@ -1,34 +1,31 @@
 <!doctype html>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <title>App Portal</title>
-<a href='https://www.glassdoor.com/index.htm'>powered by <img src='https://www.glassdoor.com/static/img/api/glassdoor_logo_80.png' title='Job Search' /></a>
 <head>
-  <div>
-    Application Portal
+  <div class="row">
+    <h1 class="text-center col-12">
+      <b>
+        Application Portal
+      </b>
+    </h1>
   </div>
 </head>
 <body>
-  Stuff
-    <div>
+  <form>
+    <div class="form-group">
       <label for="companyinput">Company</label>
       <div class="col-8">
         <input type="text" class="form-control" id="companyinput" placeholder="Enter company">
       <div>
     </div>
-    <button type="button" class="btn btn-primary" id="search">Search</button>
-    <div id="results">
-    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 </body>
-<script type=text/javascript>
-$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-$("#search").click(function() {
-  console.log($("#companyinput").val());
-  $.get($SCRIPT_ROOT + '/company', {'name': $("#companyinput").val()}, function(data) {
-    console.log(data);
-    $("#results").prepend(data);
-  });
-});
+
+<script>
+
+
 </script>
