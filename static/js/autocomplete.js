@@ -10,7 +10,6 @@ function autocomplete(company){
       for (var key in data) {
         autocomplete_options.push(data[key]);
       }
-      #console.log(autocomplete_options);
       $("#companyinput").autocomplete({
         source: autocomplete_options
       });
