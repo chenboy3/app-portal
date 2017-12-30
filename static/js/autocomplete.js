@@ -1,13 +1,24 @@
-$.getScript('./js/config.js');
 var req_url = 'http://api.glassdoor.com/api/api.htm?v=';
 
 function getCompany(name){
-  var url = buildURL('1', 'json', getId(), getKey(), 'employers',
-  '75.104.65.154', window.navigator.userAgent, name);
-  return $.post({
-    url: url,
+  console.log({company: name})
+  return $.ajax({
+    url: '/acProxy',
+    type: 'POST',
+    data: name,
+    dataType: 'json',
+    contentType: 'string',
     success: function(data){
       console.log(data);
+      console.log(typeof(data));
+      var autocomplete_options = [];
+      for (var key in data) {
+        autocomplete_options.push(data[key]);
+      }
+      console.log(autocomplete_options);
+      $("#companyinput").autocomplete({
+        source: autocomplete_options
+      });
     }
   });
 }

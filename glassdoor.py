@@ -5,7 +5,7 @@ from flask import request
 
 req_url = 'http://api.glassdoor.com/api/api.htm?v='
 
-def getCompany(name):
+def getCompanies(name):
     url = buildURL('1', 'json', config.id, config.key, 'employers', '75.104.65.154',
     request.user_agent.string,
     name)
@@ -18,9 +18,7 @@ def buildURL(v, format, tp, tk, action, userip, useragent, searchterm):
          "&useragent=" + useragent)
 
 def getLogo(company):
-    response = getCompany(company).json()
-    #print (response)
-    #print("PART 2")
+    response = getCompanies(company).json()
     # Invalid search
     if len(response['response']['employers']) == 0:
         return None
@@ -30,5 +28,12 @@ def getLogo(company):
     # name, website, overallRating, industry,
     #return "http://i.imgur.com/6E2694O.gifv"
 
-def getName(company):
-    response = getCompany(company)
+# Change this to be more extensible
+def getFiveCompanies(company):
+    response = getCompanies(company).json()
+    result = []
+    for employer in response['response']['employers']:
+        result.append(employer['name'])
+        if len(result) == 5:
+            break
+    return result
